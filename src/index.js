@@ -22,7 +22,7 @@ app.use(bodyParser.json({ limit: "50mb" }));
 //   })
 // );
 // app.use(express.json());
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Credentials", true);
   res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
@@ -46,7 +46,7 @@ app.use("/api/upload", uploadRoute);
 app.use("/api/user", userRoute);
 app.use("/api/auth", authRoute);
 app.get("/", (req, res) => {
-  res.send("Hello world");
+  return res.status(200).json("Hello world");
 });
 
 app.listen(process.env.PORT, () => {
