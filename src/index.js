@@ -14,7 +14,7 @@ dotenv.config();
 // app.use(express.limit(100000000));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 app.use(bodyParser.json({ limit: "50mb" }));
-// app.use(cors());
+app.use(cors());
 // app.use(
 //   express.urlencoded({
 //     //bodyparser lib
@@ -45,7 +45,7 @@ app.use("/api/image", imageRoute);
 app.use("/api/upload", uploadRoute);
 app.use("/api/user", userRoute);
 app.use("/api/auth", authRoute);
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
   return res.status(200).json("Hello world");
 });
 
