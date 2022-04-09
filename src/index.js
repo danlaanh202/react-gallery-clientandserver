@@ -14,7 +14,7 @@ dotenv.config();
 // app.use(express.limit(100000000));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 app.use(bodyParser.json({ limit: "50mb" }));
-app.use(cors());
+// app.use(cors());
 // app.use(
 //   express.urlencoded({
 //     //bodyparser lib
