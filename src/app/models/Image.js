@@ -8,7 +8,6 @@ const ImageSchema = new mongoose.Schema(
     },
     uploader: {
       type: String,
-      required: true,
     },
     category: {
       type: Array,
