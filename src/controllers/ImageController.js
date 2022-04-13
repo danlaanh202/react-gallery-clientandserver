@@ -7,8 +7,9 @@ class ImageController {
       const { password, ...userInfo } = await User.findOne({
         _id: req.params.id,
       });
+
       const image = await Image.find({
-        uploader: userInfo._doc.username,
+        uploader_id: userInfo._doc._id,
       });
 
       return res.status(200).json(image);
@@ -32,28 +33,11 @@ class ImageController {
   async getFavoriteImage(req, res, next) {
     try {
       const favoriteIds = req.body.favoriteIds;
-      console.log(favoriteIds);
       const image = await Image.find({ _id: { $in: favoriteIds } });
       return res.status(200).json(image);
     } catch (err) {
       return res.status(500).json(err);
     }
   }
-  // async getImageDataUser(req,res) { //Temporary to fix
-  //   await image.map((item, index) => {
-  //     const uploaderUser = await User.findOne({ _id: item.uploader_id });
-  //     if (index === 0) {
-  //       console.log("============================================");
-  //       console.log(item);
-  //     }
-
-  //     return {
-  //       ...item,
-  //       uploader_id: uploaderUser._id,
-  //       uploader_name: uploaderUser.name,
-  //       uploader_avatar: uploaderUser.avatar,
-  //     };
-  //   });
-  // }
 }
 module.exports = new ImageController();

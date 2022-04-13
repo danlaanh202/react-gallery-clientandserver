@@ -16,11 +16,18 @@ class AuthController {
           process.env.PASS_SEC
         ).toString(),
       });
+
       const { password, ...savedUser } = await newUser.save();
-      console.log("hello world");
+
       return res.status(201).json(savedUser);
     } catch (err) {
-      return res.status(500).json(err);
+      if (err.username === "MongoError" && err.code === 11000) {
+        return res.status(500).json({ message: "username already exist!" });
+      } else if (err.email === "MongoError" && err.code === 11000) {
+        return res.status(500).json({ message: "email already exist!" });
+      } else {
+        return res.status(500).json(err);
+      }
     }
   }
   async login(req, res) {
