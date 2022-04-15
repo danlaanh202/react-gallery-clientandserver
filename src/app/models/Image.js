@@ -9,8 +9,8 @@ const ImageSchema = new mongoose.Schema(
     uploader: {
       type: String,
     },
-    category: {
-      type: Array,
+    title: {
+      type: String,
     },
     uploader_avatar: {
       type: String,

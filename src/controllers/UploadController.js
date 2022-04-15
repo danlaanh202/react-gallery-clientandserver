@@ -12,7 +12,7 @@ class UploadController {
       const newImage = await new Image({
         url: uploadedResponse.url,
         uploader_id: req.body.uploader._id,
-        category: req.body.category,
+        title: req.body.title,
         uploader_name: req.body.uploader.name,
         uploader_avatar: req.body.uploader.avatar,
       });
